@@ -20,8 +20,8 @@ defmodule Phalanx.Handler do
     server_module = Map.get(servers, package_name)
 
     server_opts =
-      if(!is_nil(server_module) && Code.ensure_loaded?(server_module) && function_exported?(server_module, :meta, 0)) do
-        opts = apply(server_module, :meta, [])
+      if(!is_nil(server_module) && Code.ensure_loaded?(server_module) && function_exported?(server_module, :meta, 1)) do
+        opts = apply(server_module, :meta, [path])
         Map.put(opts, :module, server_module)
       else
         # TODO handle this case

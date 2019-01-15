@@ -1,0 +1,16 @@
+syntax = "proto3";
+
+package Random;
+
+service RandomService {
+	rpc GenerateNumber (RandomRequest) returns (RandomResponse);
+	rpc GenerateManyNumbers (stream RandomRequest) returns (stream RandomResponse);
+}
+
+message RandomRequest {
+  int32 upperBound = 1;
+}
+
+message RandomResponse {
+	int32 randomNumber = 1;
+}
